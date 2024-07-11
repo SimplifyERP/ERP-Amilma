@@ -1,0 +1,109 @@
+# Copyright (c) 2023, Vivek and contributors
+# For license information, please see license.txt
+
+# Copyright (c) 2022, Vivek and contributors
+# For license information, please see license.txt
+
+
+
+import frappe
+from frappe.utils import getdate
+from datetime import datetime
+
+
+def execute(filters=None):
+    dd = get_period_date_ranges_columns_report_total(getdate(filters.get("from_date")),getdate(filters.get("to_date")))
+    res = (getdate(filters.get("to_date")).year - getdate(filters.get("from_date")).year) *12 + (getdate(filters.get("to_date")).month -  getdate(filters.get("from_date")).month)
+    fr
+    value = ""
+    if filters.get("Customer"):
+       value = f""" and  ci.name = '{filters.get('Customer')}'  """
+    data = frappe.db.sql(f""" 
+
+                    select 
+                      ci.customer_name,
+						{dd[1]}
+                     sum(sip.grand_total) as sip_total,
+                     sum(sis.grand_total) as sis_total
+ 
+                    from 
+                      `tabCustomer` ci
+                      
+                    left join `tabSales Invoice` sip  on ci.name = sip.customer and sip.company = 'Sree Amoha Food Gallery Pvt Ltd'
+                    left join `tabSales Invoice` sis  on sis.company = ci.represents_company
+					{dd[2]}
+                      
+                    where ci.is_internal_customer = 1 
+					and sip.docstatus = 1  and sip.is_return = 0 
+					and sis.docstatus = 1  and sis.is_return = 0 and
+
+                    sip.posting_date between '{filters.get("from_date")}' and '{filters.get("to_date")}' and
+                    sis.posting_date between '{filters.get("from_date")}' and '{filters.get("to_date")}'
+
+						{value}
+
+                    group by ci.name
+
+				""",as_dict=1)
+    columns=[
+		{
+			"fieldname": "customer_name",
+			"label": "<b>Customer</b>",
+			"fieldtype": "Data",
+			"width":  200
+		}
+	]
+    for i in dd[0]:
+        columns.append(i)
+    columns.append({"fieldname": "sip_total","label": "<b>sip_total </b>","fieldtype": "Float","default" :0.00,"width":  150}
+		)
+    columns.append(
+			{
+				"fieldname": "sis_total",
+				"label": "<b>sis_total</b>",
+				"fieldtype": "Float",
+				"default" :0.00,
+				"width":  150
+			}
+	)
+    return columns, data
+
+
+
+@frappe.whitelist(allow_guest=True)
+def get_period_date_ranges_columns_report_total(year_start_date,year_end_date):
+    from dateutil.relativedelta import relativedelta
+    res = (getdate(year_end_date).year - getdate(year_start_date).year) *12 + (getdate(year_end_date).month - getdate(year_start_date).month)
+    increment = 1
+    period_date_ranges = []
+    query = ''
+    row = ''
+    colm = []
+    for i in range(1, res + 2, increment):
+        period_end_date = getdate(year_start_date) + relativedelta(months=increment, days=-1)
+        if period_end_date > getdate(year_end_date):
+            period_end_date = year_end_date
+        period_date_ranges.append([year_start_date, period_end_date])
+        start = getdate(year_start_date).strftime("%b%y")
+        end   = getdate(period_end_date).strftime("%b%y")
+        row += f'''
+		sum({start}.grand_total) as {start}g,
+		sum({start}1.grand_total) as {start}1,
+		'''
+        colm.append({'fieldname': f'{start}g','label': f'{start}','fieldtype': 'Float','default' :0.00,'width':  150})
+        colm.append({'fieldname': f'{start}1','label': f'{start}1','fieldtype': 'Float','default' :0.00,'width':  150})
+        query += f""" \n
+
+			left join `tabSales Invoice` {start}  on
+			ci.name = {start}.customer and {start}.company = 'Sree Amoha Food Gallery Pvt Ltd'
+			and  {start}.posting_date between '{year_start_date}' 
+				and '{period_end_date}' 
+
+			left join `tabSales Invoice` {start}1  on {start}1.company = ci.represents_company
+			and  {start}.posting_date between '{year_start_date}' 
+				and '{period_end_date}' 
+				   """
+        year_start_date = period_end_date + relativedelta(days=1)
+        if period_end_date == year_end_date:
+            break
+    return [colm,row,query]

@@ -1,0 +1,293 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "format:{purchase_date_abbr}-{series}",
+ "creation": "2022-08-31 15:58:23.817049",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "make",
+  "model",
+  "mode_of_payment",
+  "column_break_3",
+  "capacity",
+  "freezer_type",
+  "freezer_type_abbr",
+  "serial_no",
+  "section_break_7",
+  "basket",
+  "key",
+  "standee_board",
+  "column_break_11",
+  "flex_board",
+  "light_board",
+  "status",
+  "agreement_status",
+  "section_break_16",
+  "dealer",
+  "dealer_name",
+  "territory",
+  "column_break_18",
+  "distributor",
+  "distributor_name",
+  "customer_group",
+  "section_break_20",
+  "remarks",
+  "freezer_deposit",
+  "freezer_deposit_status",
+  "transaction_reference_number",
+  "column_break_22",
+  "freezer_placed_date",
+  "purchase_date",
+  "purchase_date_abbr",
+  "series",
+  "amended_from",
+  "test"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": ".{purchase_date_abbr}.-.####"
+  },
+  {
+   "fieldname": "make",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Make",
+   "options": "Freezer Make",
+   "reqd": 1
+  },
+  {
+   "fieldname": "model",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Model"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "capacity",
+   "fieldtype": "Data",
+   "label": "Capacity",
+   "reqd": 1
+  },
+  {
+   "fieldname": "freezer_type",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Freezer Type",
+   "options": "Freezer Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "freezer_type_abbr",
+   "fieldtype": "Data",
+   "label": "Freezer Type Abbr",
+   "read_only": 1
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Serial No"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "basket",
+   "fieldtype": "Data",
+   "label": "Basket"
+  },
+  {
+   "fieldname": "key",
+   "fieldtype": "Data",
+   "label": "Key"
+  },
+  {
+   "fieldname": "standee_board",
+   "fieldtype": "Data",
+   "label": "Standee Board"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "flex_board",
+   "fieldtype": "Data",
+   "label": "Flex Board"
+  },
+  {
+   "fieldname": "light_board",
+   "fieldtype": "Data",
+   "label": "Light Board"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nActive\nInactive\nComplaint\nPullout\nUnpullout\nBulk\nScrap(D)\nDB Point\nBulk\nMissing\nUnpullout, Complaint\nDamaged\nComplaint and Pullout\nComplaint and DB Point\nUnPullout and Missing\nIn-House\nScrap(D)"
+  },
+  {
+   "fieldname": "agreement_status",
+   "fieldtype": "Select",
+   "label": "Agreement Status",
+   "options": "\nDone\nNot Done"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "dealer",
+   "fieldtype": "Link",
+   "label": "Dealer",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "dealer.customer_name",
+   "fieldname": "dealer_name",
+   "fieldtype": "Data",
+   "label": "Dealer Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "dealer.territory",
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "label": "Territory",
+   "options": "Territory"
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "distributor",
+   "fieldtype": "Link",
+   "label": "Distributor",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "distributor.customer_name",
+   "fieldname": "distributor_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Distributor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_20",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "freezer_deposit",
+   "fieldtype": "Currency",
+   "label": "Freezer Deposit"
+  },
+  {
+   "fieldname": "column_break_22",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "freezer_placed_date",
+   "fieldtype": "Date",
+   "label": "Freezer Placed Date"
+  },
+  {
+   "fieldname": "purchase_date",
+   "fieldtype": "Date",
+   "label": "Purchase Date"
+  },
+  {
+   "fieldname": "purchase_date_abbr",
+   "fieldtype": "Data",
+   "label": "Purchase Date Abbr"
+  },
+  {
+   "fieldname": "series",
+   "fieldtype": "Int",
+   "label": "Series"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Freezer Data",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "test",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "test"
+  },
+  {
+   "fieldname": "customer_group",
+   "fieldtype": "Link",
+   "label": "Customer Group",
+   "options": "Customer Group"
+  },
+  {
+   "fieldname": "freezer_deposit_status",
+   "fieldtype": "Select",
+   "label": "Freezer Deposit Status",
+   "options": "Yes\nNo",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transaction_reference_number",
+   "fieldtype": "Data",
+   "label": "Transaction Reference Number"
+  },
+  {
+   "fieldname": "mode_of_payment",
+   "fieldtype": "Link",
+   "label": "Mode of Payment",
+   "options": "Mode of Payment"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-12-28 15:20:19.326640",
+ "modified_by": "Administrator",
+ "module": "Amilma Custom",
+ "name": "Freezer Data",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

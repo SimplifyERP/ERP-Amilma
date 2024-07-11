@@ -1,0 +1,122 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "MC-.####",
+ "creation": "2023-12-19 10:19:34.927368",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "db",
+  "outlet",
+  "column_break_1k6jn",
+  "posting_date",
+  "section_break_nflvh",
+  "melting_claim_items",
+  "section_break_qzdir",
+  "total_qty",
+  "amount_in_words",
+  "column_break_tbssk",
+  "net_total",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "db",
+   "fieldtype": "Link",
+   "label": "DB",
+   "options": "Company"
+  },
+  {
+   "fieldname": "outlet",
+   "fieldtype": "Link",
+   "label": "Outlet",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "column_break_1k6jn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Melting Claim",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_nflvh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "melting_claim_items",
+   "fieldtype": "Table",
+   "label": "Melting Claim Items",
+   "options": "Melting Claim Items"
+  },
+  {
+   "fieldname": "net_total",
+   "fieldtype": "Currency",
+   "label": "Total(INR)"
+  },
+  {
+   "fieldname": "total_qty",
+   "fieldtype": "Float",
+   "label": "Total Qty"
+  },
+  {
+   "fieldname": "column_break_tbssk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_qzdir",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amount_in_words",
+   "fieldtype": "Data",
+   "label": "Amount In Words",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-01-04 21:31:16.205552",
+ "modified_by": "Administrator",
+ "module": "Amilma Custom",
+ "name": "Melting Claim",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_views": 1
+}

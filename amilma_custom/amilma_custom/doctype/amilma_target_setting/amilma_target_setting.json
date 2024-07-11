@@ -1,0 +1,226 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-03-22 10:57:40.154636",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "column_break_2",
+  "type",
+  "customer_details_section",
+  "distributor",
+  "distributor_name",
+  "company_name",
+  "column_break_6",
+  "territory",
+  "target_details_section",
+  "target_from",
+  "target_to",
+  "column_break_7",
+  "target_amount",
+  "month",
+  "amended_from",
+  "naming_series",
+  "user_details_tab",
+  "sales_officer",
+  "so_designation",
+  "column_break_ph86i",
+  "area_sales_manager",
+  "asm_designation",
+  "column_break_4yzoa",
+  "regional_sales_manager",
+  "rsm_designation"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "\nPrimary\nSecondary",
+   "reqd": 1
+  },
+  {
+   "fieldname": "target_from",
+   "fieldtype": "Date",
+   "label": "Target From",
+   "reqd": 1
+  },
+  {
+   "fieldname": "target_to",
+   "fieldtype": "Date",
+   "label": "Target To",
+   "reqd": 1
+  },
+  {
+   "fieldname": "target_amount",
+   "fieldtype": "Currency",
+   "label": "Target Amount",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Amilma Target Setting",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "target_details_section",
+   "fieldtype": "Section Break",
+   "label": "Target Details"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_details_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fieldname": "distributor",
+   "fieldtype": "Link",
+   "label": "Distributor",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "distributor.territory",
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "label": "Territory",
+   "options": "Territory",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "distributor.customer_name",
+   "fieldname": "distributor_name",
+   "fieldtype": "Data",
+   "label": "Distributor Name",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.type === 'Secondary'",
+   "fetch_from": "distributor.represents_company",
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company Name ",
+   "mandatory_depends_on": "eval:doc.type === 'Secondary'",
+   "options": "Company"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": ".{type}.-.###"
+  },
+  {
+   "fieldname": "user_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "User Details"
+  },
+  {
+   "fieldname": "sales_officer",
+   "fieldtype": "Link",
+   "label": "Sales Officer",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_ph86i",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "area_sales_manager",
+   "fieldtype": "Link",
+   "label": "Area Sales Manager",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_4yzoa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "regional_sales_manager",
+   "fieldtype": "Link",
+   "label": "Regional Sales Manager",
+   "options": "User"
+  },
+  {
+   "default": "Sales Officer",
+   "depends_on": "eval:doc.sales_officer",
+   "fieldname": "so_designation",
+   "fieldtype": "Data",
+   "label": "SO Designation",
+   "read_only": 1
+  },
+  {
+   "default": "Area Sales Manager",
+   "depends_on": "eval:doc.area_sales_manager",
+   "fieldname": "asm_designation",
+   "fieldtype": "Data",
+   "label": "ASM Designation",
+   "read_only": 1
+  },
+  {
+   "default": "Regional Sales Manager",
+   "depends_on": "eval:doc.regional_sales_manager",
+   "fieldname": "rsm_designation",
+   "fieldtype": "Data",
+   "label": "RSM Designation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "month",
+   "fieldtype": "Int",
+   "label": "Month"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-12-31 09:00:09.534772",
+ "modified_by": "Administrator",
+ "module": "Amilma Custom",
+ "name": "Amilma Target Setting",
+ "name_case": "Title Case",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

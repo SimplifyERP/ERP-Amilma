@@ -1,0 +1,45 @@
+{
+ "add_total_row": 1,
+ "columns": [],
+ "creation": "2023-03-21 01:31:44.008835",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": "LH-01",
+ "modified": "2023-04-06 15:25:01.403015",
+ "modified_by": "Administrator",
+ "module": "Amilma Custom",
+ "name": "Billed and non-billed summary",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "ref_doctype": "Sales Invoice",
+ "report_name": "Billed and non-billed summary",
+ "report_type": "Script Report",
+ "roles": [
+  {
+   "role": "Accounts User"
+  },
+  {
+   "role": "Accounts Manager"
+  },
+  {
+   "role": "Employee Self Service"
+  },
+  {
+   "role": "Distributor"
+  },
+  {
+   "role": "ASM"
+  },
+  {
+   "role": "Billing Team"
+  },
+  {
+   "role": "Sales Officer"
+  }
+ ]
+}
