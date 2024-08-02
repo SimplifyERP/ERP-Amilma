@@ -30,7 +30,7 @@ app_license = "MIT"
 
 # include js in doctype views
 doctype_js = {
-    "Sales Order" : "public/js/sales_order.js"
+    "Sales Order" : "public/js/sales_order.js",
     }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -96,18 +96,18 @@ doctype_js = {
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Sales Invoice": "amilma_custom.amilma_custom.override.sales_invoice.CustomSalesInvoice"
+}
 
 # Document Events
 # ---------------
 # Hook on document methods and events
 
 # doc_events = {
-# 	"Lead": {
-# 		"on_update": "amilma_custom.api.new_call.update_shop_image_lead",
-# 	}
+	# "Lead": {
+	# 	"on_update": "amilma_custom.api.new_call.update_shop_image_lead",
+	# },
 # }
 
 # Scheduled Tasks
