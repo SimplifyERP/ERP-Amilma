@@ -82,7 +82,7 @@ class CustomSalesInvoice(SalesInvoice):
 
                 elif self.total > 10000:
                     if not offer_2_present:
-                        self.items = [item for item in self.items if item.item_code != offer_1]
+                        self.items = [item for item in self.items if item.item_code != offer_2]
                         new_item = self.append('items', {})
                         new_item.item_code = offer_2_item_details.name
                         new_item.item_name = offer_2_item_details.item_name
