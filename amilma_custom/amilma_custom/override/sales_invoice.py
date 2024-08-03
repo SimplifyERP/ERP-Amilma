@@ -45,43 +45,45 @@ class CustomSalesInvoice(SalesInvoice):
                 self.items = [item for item in self.items if item.item_code not in [offer_1, offer_2]]
             elif item_group_present:    
                 self.items = [item for item in self.items if item.item_code not in [offer_1, offer_2]]
-            elif valid_items_present:    
-                if self.total > 3000 and self.total < 4999:
-                    if not offer_1_present:
-                        self.items = [item for item in self.items if item.item_code != offer_2]
-                        new_item = self.append('items', {})
-                        new_item.item_code = offer_1_item_details.name
-                        new_item.item_name = offer_1_item_details.item_name
-                        new_item.qty = 1
-                        new_item.description =offer_1_item_details.description
-                        new_item.uom = offer_1_item_details.stock_uom
-                        new_item.conversion_factor = 0.0
-                        new_item.rate = 0.0
-                        new_item.amount = 0.0
-                        new_item.base_rate = 0.0
-                        new_item.base_amount = 0.0
-                    else:
-                        self.items = [item for item in self.items if item.item_code != offer_2]
+            elif valid_items_present: 
+                if self.custom_offer_item_removed == 0:   
+                    if self.total > 3000 and self.total < 4999:
+                        if not offer_1_present:
+                            self.items = [item for item in self.items if item.item_code != offer_2]
+                            new_item = self.append('items', {})
+                            new_item.item_code = offer_1_item_details.name
+                            new_item.item_name = offer_1_item_details.item_name
+                            new_item.qty = 1
+                            new_item.description =offer_1_item_details.description
+                            new_item.uom = offer_1_item_details.stock_uom
+                            new_item.conversion_factor = 0.0
+                            new_item.rate = 0.0
+                            new_item.amount = 0.0
+                            new_item.base_rate = 0.0
+                            new_item.base_amount = 0.0
+                        else:
+                            self.items = [item for item in self.items if item.item_code != offer_2]
 
-                elif self.total >= 5000 and self.total < 10000:
-                    if not offer_2_present:
-                        self.items = [item for item in self.items if item.item_code != offer_1]
-                        new_item = self.append('items', {})
-                        new_item.item_code = offer_2_item_details.name
-                        new_item.item_name = offer_2_item_details.item_name
-                        new_item.qty = 1
-                        new_item.description = offer_2_item_details.description
-                        new_item.uom = offer_2_item_details.stock_uom
-                        new_item.conversion_factor = 0.0
-                        new_item.rate = 0.0
-                        new_item.amount = 0.0
-                        new_item.base_rate = 0.0
-                        new_item.base_amount = 0.0
-                    else:
-                        self.items = [item for item in self.items if item.item_code != offer_1]
+                    elif self.total >= 5000 and self.total < 10000:
+                        if not offer_2_present:
+                            self.items = [item for item in self.items if item.item_code != offer_1]
+                            new_item = self.append('items', {})
+                            new_item.item_code = offer_2_item_details.name
+                            new_item.item_name = offer_2_item_details.item_name
+                            new_item.qty = 1
+                            new_item.description = offer_2_item_details.description
+                            new_item.uom = offer_2_item_details.stock_uom
+                            new_item.conversion_factor = 0.0
+                            new_item.rate = 0.0
+                            new_item.amount = 0.0
+                            new_item.base_rate = 0.0
+                            new_item.base_amount = 0.0
+                        else:
+                            self.items = [item for item in self.items if item.item_code != offer_1]
 
-                elif self.total > 10000:
-                    if not offer_2_present:
+                    elif self.total > 10000:
+                        # if not offer_2_present:
+                        #     frappe.errprint("hi")
                         self.items = [item for item in self.items if item.item_code != offer_2]
                         new_item = self.append('items', {})
                         new_item.item_code = offer_2_item_details.name
@@ -94,10 +96,10 @@ class CustomSalesInvoice(SalesInvoice):
                         new_item.amount = 0.0
                         new_item.base_rate = 0.0
                         new_item.base_amount = 0.0
-                    else:
-                        self.items = [item for item in self.items if item.item_code != offer_1]        
-                self.run_method("set_missing_values")
-            else:
-                self.items = [item for item in self.items if item.item_code != offer_1 and item.item_code != offer_2]
+                        # else:
+                        #     self.items = [item for item in self.items if item.item_code != offer_1]        
+                    self.run_method("set_missing_values")
+                else:
+                    self.items = [item for item in self.items if item.item_code != offer_1 and item.item_code != offer_2]
 
 
