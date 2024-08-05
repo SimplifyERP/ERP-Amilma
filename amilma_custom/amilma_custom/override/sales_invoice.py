@@ -47,7 +47,7 @@ class CustomSalesInvoice(SalesInvoice):
                 self.items = [item for item in self.items if item.item_code not in [offer_1, offer_2]]
             elif valid_items_present: 
                 if self.custom_offer_item_removed == 0:   
-                    if self.total > 3000 and self.total < 4999:
+                    if self.total > 2542.37 and self.total < 4237.29:
                         if not offer_1_present:
                             self.items = [item for item in self.items if item.item_code != offer_2]
                             new_item = self.append('items', {})
@@ -64,7 +64,7 @@ class CustomSalesInvoice(SalesInvoice):
                         else:
                             self.items = [item for item in self.items if item.item_code != offer_2]
 
-                    elif self.total >= 5000 and self.total < 10000:
+                    elif self.total >= 4237.29 and self.total < 8474.58:
                         if not offer_2_present:
                             self.items = [item for item in self.items if item.item_code != offer_1]
                             new_item = self.append('items', {})
@@ -81,7 +81,7 @@ class CustomSalesInvoice(SalesInvoice):
                         else:
                             self.items = [item for item in self.items if item.item_code != offer_1]
 
-                    elif self.total > 10000:
+                    elif self.total > 8474.58:
                         # if not offer_2_present:
                         #     frappe.errprint("hi")
                         self.items = [item for item in self.items if item.item_code != offer_2]
